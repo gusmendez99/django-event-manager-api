@@ -1,6 +1,7 @@
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets
+from django.core.exceptions import PermissionDenied
 
 from babies.models import Baby
 from events.models import Event
@@ -29,7 +30,8 @@ class BabyViewSet(viewsets.ModelViewSet):
                     'destroy': evaluate_user,
                     'update': evaluate_user,
                     'partial_update': evaluate_user,
-                    'events': evaluate_user
+                    'events': evaluate_user,
+                    'perform_create': evaluate_user,
                 }
             }
         ),
@@ -37,11 +39,15 @@ class BabyViewSet(viewsets.ModelViewSet):
 
     # POST method
     def perform_create(self, serializer):
-        baby = serializer.save()
+        #if user.is_authenticated():
         user = self.request.user
-        assign_perm('baby.change_baby', user, baby)
-        assign_perm('baby.view_baby', user, baby)
-        return Response(serializer.data)
+        if not user.is_authenticated:
+            raise PermissionDenied('You are not authenticated')
+        else:
+            baby = serializer.save()
+            assign_perm('baby.change_baby', user, baby)
+            assign_perm('baby.view_baby', user, baby)
+            return Response(serializer.data)
 
     # GET method
     @action(detail=True, methods=['get'])
