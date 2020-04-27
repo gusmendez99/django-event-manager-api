@@ -1,9 +1,10 @@
+from django.utils.timezone import now
 from django.db import models
 
 # Create your models here.
 class Event(models.Model):
     type = models.CharField(max_length = 50, null = False)
-    datetime = models.DateTimeField()
+    datetime = models.DateTimeField(default = now)
     description = models.CharField(max_length = 200, null = False)
     baby = models.ForeignKey(
         'babies.Baby',

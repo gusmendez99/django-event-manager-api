@@ -10,8 +10,8 @@ class BabySerializer(serializers.ModelSerializer):
         model = Baby
         fields = (
             'id',
-            'firstname',
-            'lastname',
+            'first_name',
+            'last_name',
             'age',
             'parent'
         )
