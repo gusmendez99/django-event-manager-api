@@ -55,46 +55,64 @@ Data has been already stored in DB. So, assume this data.
         * Event (id: 1): Poop 
 
 ## Usage
-I recommend test this code via CURL test online, here: https://reqbin.com/curl 
+I recommend test this code via cURL from terminal.
 
 1. Get token
 ```bash
-    curl
+    curl --location --request POST 'http://baby-events-api.herokuapp.com/api/v1/token-auth/' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'username=julio' \
+    --data-urlencode 'password=julio1234'
 ```
 2. Refresh token
 ```bash
-    curl
+    curl --location --request POST 'http://baby-events-api.herokuapp.com/api/v1/token-refresh/' \
+    --data-urlencode 'token=token_to_refresh'
 ```
 3. Get all babies of given parent 
 ```bash
-    curl
+    curl --location --request GET 'http://baby-events-api.herokuapp.com/api/v1/parents/2/babies' \
+    --header 'Authorization: JWT insert_token_here'
 ```
 4. Get single baby (if auth parent owns)
 ```bash
-    curl
+    curl --location --request GET 'http://baby-events-api.herokuapp.com/api/v1/babies/4' \
+    --header 'Authorization: JWT insert_token_here'
 ```
 5. Get all baby events (if auth parent owns)
 ```bash
-    curl
+    curl --location --request GET 'http://baby-events-api.herokuapp.com/api/v1/babies/4/events' \
+    --header 'Authorization: JWT insert_token_here'
 ```
 6. Add event to baby (if auth parent owns)
 ```bash
-    curl
+    curl --location --request POST 'http://baby-events-api.herokuapp.com/api/v1/events/' \
+    --header 'Authorization: JWT insert_token_here' \
+    --data-urlencode 'type=pee' \
+    --data-urlencode 'description=Pee a lot' \
+    --data-urlencode 'baby=3'
 ```
 7. Get single baby (if auth parent owns)
 ```bash
-    curl
+    curl --location --request GET 'http://baby-events-api.herokuapp.com/api/v1/events/1' \
+    --header 'Authorization: JWT insert_token_here'
 ```
 8. Add new baby
 ```bash
-    curl
+    curl --location --request POST 'http://baby-events-api.herokuapp.com/api/v1/babies/' \
+    --header 'Authorization: JWT insert_token_here' \
+    --data-urlencode 'first_name=Ruben' \
+    --data-urlencode 'last_name=Hernandez' \
+    --data-urlencode 'age=1' \
+    --data-urlencode 'parent=1'
 ```
 9.  Get all babies 
 ```bash
-    curl
+    curl --location --request GET 'http://baby-events-api.herokuapp.com/api/v1/babies' \
+    --header 'Authorization: JWT insert_token_here'
 ```
 
-- Note: from 3-9, needs Authorization header.
+- Note: <em>replace token_to_refresh</em> and  <em>insert_token_here</em> .
 
 
 ## License
