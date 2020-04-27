@@ -1,1 +1,0 @@
-web: gunicorn babyevents.babyevents.wsgi --log-file -
