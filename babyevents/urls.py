@@ -24,6 +24,7 @@ from rest_framework_jwt.views import (
 from babies.views import BabyViewSet
 from parents.views import ParentViewSet
 from events.views import EventViewSet
+from . import views
 
 
 router = routers.DefaultRouter()
@@ -36,6 +37,7 @@ router.register(r'events', EventViewSet)
 # elapp.com/api/v1/pets
 
 urlpatterns = [
+    url(r'^$', views.index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/v1/', include(router.urls)),
