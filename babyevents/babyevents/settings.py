@@ -30,7 +30,9 @@ SECRET_KEY = 'w8n026qjo$n849+qig)@c7_2r5#^^^id9*6*smevjsip2(xod('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'baby-events-api.herokuapp.com'
+]
 
 
 # Application definition
