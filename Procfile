@@ -1,1 +1,1 @@
-web: gunicorn babyevents.wsgi --log-file -
+web: gunicorn babyevents.babyevents.wsgi --log-file -
