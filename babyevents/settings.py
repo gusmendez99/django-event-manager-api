@@ -31,7 +31,8 @@ SECRET_KEY = 'w8n026qjo$n849+qig)@c7_2r5#^^^id9*6*smevjsip2(xod('
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'baby-events-api.herokuapp.com'
+    'baby-events-api.herokuapp.com',
+    'localhost'
 ]
 
 
